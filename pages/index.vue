@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-screen mx-auto left-0 right-0 top-0 bottom-0 absolute"
+    class="w-screen mx-auto left-0 right-0 top-0 bottom-0 absolute dark:bg-gray-900"
     @dragover="dragover"
     @drop="drop"
   >
@@ -172,7 +172,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from 'vue'
 const defaultImage = ''
 const WIDTH = 1200
@@ -187,11 +187,6 @@ export default Vue.extend({
       image: defaultImage,
       cropImg: '',
       data: null
-    }
-  },
-  head: {
-    bodyAttrs: {
-      class: 'dark:bg-gray-900'
     }
   },
   methods: {
