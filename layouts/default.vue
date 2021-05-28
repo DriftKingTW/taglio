@@ -5,6 +5,8 @@
 </template>
 
 <style type="scss">
+@import url('@/assets/css/vue-tooltip.css');
+
 html {
   font-family:
     'Source Sans Pro',

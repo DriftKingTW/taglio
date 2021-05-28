@@ -18,7 +18,7 @@
           <!-- placement="center" -->
           <!-- Button content -->
           <template #button>
-            <span class="px-2 py-2 inline-flex items-center justify-items-end text-md rounded-lg">
+            <span v-tooltip="'Template'" class="px-2 py-2 inline-flex items-center justify-items-end text-md rounded-lg">
               <span class="mr-2">{{ currentTemplate }}</span>
             </span>
           </template>
@@ -42,6 +42,7 @@
         >
         <input
           v-model="imgWidth"
+          v-tooltip="'Width'"
           class="input-size rounded-l-lg"
           name="imgWidth"
           type="text"
@@ -49,6 +50,7 @@
           @change="setCropSize"
         >
         <a
+          v-tooltip="'Link'"
           href="#"
           class="btn-normal"
           role="button"
@@ -59,6 +61,7 @@
         </a>
         <input
           v-model="imgHeight"
+          v-tooltip="'Height'"
           class="input-size rounded-r-lg mr-3"
           name="imgHeight"
           type="text"
@@ -66,6 +69,7 @@
           @change="setCropSize"
         >
         <a
+          v-tooltip="'Upload'"
           href="#"
           class="btn-normal rounded-l-md"
           role="button"
@@ -74,6 +78,7 @@
           <fa :icon="['fas', 'upload']" />
         </a>
         <a
+          v-tooltip="'Reset'"
           href="#"
           class="btn-normal"
           role="button"
@@ -82,6 +87,7 @@
           <fa :icon="['fas', 'undo']" />
         </a>
         <a
+          v-tooltip="'Crop'"
           href="#"
           class="btn-normal"
           role="button"
@@ -90,6 +96,7 @@
           <fa :icon="['fas', 'crop']" />
         </a>
         <a
+          v-tooltip="'Download'"
           class="btn-normal rounded-r-md"
           role="button"
           :href="cropImg"
