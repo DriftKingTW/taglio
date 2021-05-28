@@ -1,6 +1,6 @@
 <template>
   <div class="relative z-20">
-    <button class="z-10 relative flex items-center focus:outline-none select-none dark:bg-gray-700 dark:text-gray-300 w-40" @click="open = !open">
+    <button class="z-10 relative flex items-center focus:outline-none select-none dark:bg-gray-700 dark:text-gray-300 w-80 sm:w-40" @click="open = !open">
       <slot name="button" />
     </button>
 

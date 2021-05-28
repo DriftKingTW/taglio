@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-screen mx-auto left-0 right-0 top-0 bottom-0 absolute dark:bg-gray-900"
+    class="w-screen mx-auto left-0 right-0 top-0 bottom-0 absolute dark:bg-gray-900 just"
     @dragover="dragover"
     @drop="drop"
   >
@@ -12,12 +12,14 @@
       </div>
     </div>
 
-    <div v-show="image" class="actions min-w-full flex justify-center items-center h-20">
-      <v-dropdown class="mr-3">
+    <div v-show="image" class="actions min-w-full flex flex-col sm:flex-row sm:h-20 justify-center items-center">
+      
+      <div class="flex flex-row items-center">
+        <v-dropdown class="mr-3 mt-2 sm:mt-0">
         <!-- placement="center" -->
         <!-- Button content -->
         <template #button>
-          <span class="px-2 py-2 inline-flex items-center justify-items-end text-sm rounded-lg">
+          <span class="px-2 py-2 inline-flex items-center justify-items-end text-md rounded-lg">
             <span class="mr-2">{{ currentTemplate }}</span>
           </span>
         </template>
@@ -29,79 +31,90 @@
           </span>
         </template>
       </v-dropdown>
-      <input
-        ref="imgInput"
-        type="file"
-        name="image"
-        accept="image/*"
-        @change="setImage"
-      >
-      <input
-        v-model="imgWidth"
-        class="input-size rounded-l-lg"
-        name="imgWidth"
-        type="text"
-        size="5"
-        @change="setCropSize"
-      >
-      <a
-        href="#"
-        class="btn-normal"
-        role="button"
-        @click.prevent="setCropLock"
-      >
-        <fa v-if="cropLock" :icon="['fas', 'link']" />
-        <fa v-else :icon="['fas', 'unlink']" />
-      </a>
-      <input
-        v-model="imgHeight"
-        class="input-size rounded-r-lg mr-3"
-        name="imgHeight"
-        type="text"
-        size="5"
-        @change="setCropSize"
-      >
-      <a
-        href="#"
-        class="btn-normal rounded-l-md"
-        role="button"
-        @click.prevent="showFileChooser"
-      >
-        <fa :icon="['fas', 'upload']" />
-      </a>
-      <a
-        href="#"
-        class="btn-normal"
-        role="button"
-        @click.prevent="reset"
-      >
-        <fa :icon="['fas', 'undo']" />
-      </a>
-      <a
-        href="#"
-        class="btn-normal"
-        role="button"
-        @click.prevent="cropImage"
-      >
-        <fa :icon="['fas', 'crop']" />
-      </a>
-      <a
-        class="btn-normal rounded-r-md"
-        role="button"
-        :href="cropImg"
-        download
-      >
-        <fa :icon="['fas', 'download']" />
-      </a>
+      </div>
+
+      <div class="flex flex-row items-center">
+        <input
+          ref="imgInput"
+          type="file"
+          name="image"
+          accept="image/*"
+          @change="setImage"
+        >
+        <input
+          v-model="imgWidth"
+          class="input-size rounded-l-lg"
+          name="imgWidth"
+          type="text"
+          size="5"
+          @change="setCropSize"
+        >
+        <a
+          href="#"
+          class="btn-normal"
+          role="button"
+          @click.prevent="setCropLock"
+        >
+          <fa v-if="cropLock" :icon="['fas', 'link']" />
+          <fa v-else :icon="['fas', 'unlink']" />
+        </a>
+        <input
+          v-model="imgHeight"
+          class="input-size rounded-r-lg mr-3"
+          name="imgHeight"
+          type="text"
+          size="5"
+          @change="setCropSize"
+        >
+        <a
+          href="#"
+          class="btn-normal rounded-l-md"
+          role="button"
+          @click.prevent="showFileChooser"
+        >
+          <fa :icon="['fas', 'upload']" />
+        </a>
+        <a
+          href="#"
+          class="btn-normal"
+          role="button"
+          @click.prevent="reset"
+        >
+          <fa :icon="['fas', 'undo']" />
+        </a>
+        <a
+          href="#"
+          class="btn-normal"
+          role="button"
+          @click.prevent="cropImage"
+        >
+          <fa :icon="['fas', 'crop']" />
+        </a>
+        <a
+          class="btn-normal rounded-r-md"
+          role="button"
+          :href="cropImg"
+          download
+        >
+          <fa :icon="['fas', 'download']" />
+        </a>
+      </div>
     </div>
 
-    <float-editor v-show="image" ref="floatEditor" @zoom="zoom" @flipX="flipX" @flipY="flipY" @rotate="rotate" />
+    <float-editor
+      v-show="image"
+      ref="floatEditor"
+      @zoom="zoom"
+      @flipX="flipX"
+      @flipY="flipY"
+      @rotate="rotate"
+    />
 
-    <div class="cropper-area mt-3">
+    <div class="cropper-area mt-0 sm:mt-3">
       <vue-cropper
         v-if="image"
         ref="cropper"
-        class="w-screen left-0 right-0 top-20 bottom-0 absolute"
+        class="w-screen left-0 right-0 top-25 sm:top-20 sm:bottom-0 absolute"
         :src="image"
         :aspect-ratio="aspectRatio"
         :view-mode="2"
