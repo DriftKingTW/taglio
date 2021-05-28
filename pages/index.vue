@@ -346,22 +346,4 @@ input[type="file"] {
   display: none;
 }
 
-.preview {
-  width: 100%;
-  /* height: calc(372px * (630 / 1200)); */
-  /* overflow: hidden; */
-  aspect-ratio: 16/9;
-  background: #ccc;
-}
-
-.crop-placeholder {
-  /* width: 100%; */
-  /* height: calc(372px * (630 / 1200)); */
-  /* aspect-ratio: 16/9; */
-  /* background: #ccc; */
-}
-
-.cropped-image img {
-  max-width: 100%;
-}
 </style>
