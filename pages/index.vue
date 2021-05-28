@@ -13,24 +13,23 @@
     </div>
 
     <div v-show="image" class="actions min-w-full flex flex-col sm:flex-row sm:h-20 justify-center items-center">
-      
       <div class="flex flex-row items-center">
         <v-dropdown class="mr-3 mt-2 sm:mt-0">
-        <!-- placement="center" -->
-        <!-- Button content -->
-        <template #button>
-          <span class="px-2 py-2 inline-flex items-center justify-items-end text-md rounded-lg">
-            <span class="mr-2">{{ currentTemplate }}</span>
-          </span>
-        </template>
+          <!-- placement="center" -->
+          <!-- Button content -->
+          <template #button>
+            <span class="px-2 py-2 inline-flex items-center justify-items-end text-md rounded-lg">
+              <span class="mr-2">{{ currentTemplate }}</span>
+            </span>
+          </template>
 
-        <!-- Opened dropdown content -->
-        <template #content>
-          <span v-for="(template, index) in templateList" :key="index">
-            <a class="flex w-full justify-between items-center rounded-lg px-2 py-1 my-1 hover:bg-blue-600 hover:text-gray-300" href="#" @click="setCropSize(template.name, template.width, template.height)">{{ template.name }}</a>
-          </span>
-        </template>
-      </v-dropdown>
+          <!-- Opened dropdown content -->
+          <template #content>
+            <span v-for="(template, index) in templateList" :key="index">
+              <a class="flex w-full justify-between items-center rounded-lg px-2 py-1 my-1 hover:bg-blue-600 hover:text-gray-300" href="#" @click="setCropSize(template.name, template.width, template.height)">{{ template.name }}</a>
+            </span>
+          </template>
+        </v-dropdown>
       </div>
 
       <div class="flex flex-row items-center">
@@ -149,9 +148,10 @@ export default Vue.extend({
     return {
       templateList: [
         { name: 'Fanbox', width: '1200', height: '630' },
-        { name: 'Pixiv', width: '500', height: '100' },
-        { name: 'Facebook', width: '200', height: '630' },
-        { name: 'Plurk', width: '600', height: '400' }
+        { name: 'Pixiv', width: '4096', height: '2048' },
+        { name: 'Twitter', width: '1500', height: '500' },
+        { name: 'Facebook', width: '851', height: '315' },
+        { name: 'Avator', width: '800', height: '800' }
       ],
       currentTemplate: 'Default',
       showOverlay: false,
