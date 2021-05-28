@@ -25,13 +25,23 @@
         class="input-size"
         name="imgWidth"
         type="text"
+        @change="setCropSize"
       >
       <input
         v-model="imgHeight"
         class="input-size"
         name="imgHeight"
         type="text"
+        @change="setCropSize"
       >
+      <a
+        href="#"
+        class="btn-normal rounded-l-md"
+        role="button"
+        @click.prevent="setCropLock"
+      >
+        Free
+      </a>
       <a
         href="#"
         class="btn-normal rounded-l-md"
@@ -153,7 +163,7 @@
         ref="cropper"
         class="w-screen left-0 right-0 top-20 bottom-0 absolute"
         :src="image"
-        :aspect-ratio="1200 / 630"
+        :aspect-ratio="aspectRatio"
         :view-mode="2"
         :auto-crop-area="1"
         :background="false"
@@ -174,6 +184,7 @@
 
 <script>
 import Vue from 'vue'
+
 const defaultImage = ''
 const WIDTH = 1200
 const HEIGHT = 630
@@ -182,10 +193,12 @@ export default Vue.extend({
   data () {
     return {
       showOverlay: false,
+      aspectRatio: 16 / 9,
       imgWidth: WIDTH,
       imgHeight: HEIGHT,
       image: defaultImage,
       cropImg: '',
+      cropLock: true,
       data: null
     }
   },
@@ -235,6 +248,19 @@ export default Vue.extend({
       } else {
         alert('Sorry, FileReader API not supported')
       }
+    },
+    setCropLock () {
+      if (this.cropLock) {
+        this.$refs.cropper.setAspectRatio(NaN)
+        this.cropLock = false
+      } else {
+        this.$refs.cropper.setAspectRatio(this.imgWidth / this.imgHeight)
+        this.cropLock = true
+      }
+    },
+    setCropSize () {
+      this.$refs.cropper.setAspectRatio(this.imgWidth / this.imgHeight)
+      this.cropLock = true
     },
     showFileChooser () {
       this.$refs.imgInput.click()
