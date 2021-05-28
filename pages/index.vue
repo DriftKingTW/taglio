@@ -34,7 +34,8 @@
         role="button"
         @click.prevent="setCropLock"
       >
-        🔒
+        <fa v-if="cropLock" :icon="['fas', 'link']" />
+        <fa v-else :icon="['fas', 'unlink']" />
       </a>
       <input
         v-model="imgHeight"
@@ -50,7 +51,7 @@
         role="button"
         @click.prevent="showFileChooser"
       >
-        Upload
+        <fa :icon="['fas', 'upload']" />
       </a>
       <a
         href="#"
@@ -58,7 +59,7 @@
         role="button"
         @click.prevent="reset"
       >
-        Reset
+        <fa :icon="['fas', 'undo']" />
       </a>
       <a
         href="#"
@@ -66,7 +67,7 @@
         role="button"
         @click.prevent="cropImage"
       >
-        Crop
+        <fa :icon="['fas', 'crop']" />
       </a>
       <a
         class="btn-normal rounded-r-md"
@@ -74,7 +75,7 @@
         :href="cropImg"
         download
       >
-        Download
+        <fa :icon="['fas', 'download']" />
       </a>
     </div>
     <div
@@ -87,7 +88,7 @@
         role="button"
         @click.prevent="zoom(0.2)"
       >
-        +
+        <fa :icon="['fas', 'search-plus']" />
       </a>
       <a
         href="#"
@@ -95,7 +96,25 @@
         role="button"
         @click.prevent="zoom(-0.2)"
       >
-        -
+        <fa :icon="['fas', 'search-minus']" />
+      </a>
+      <a
+        ref="flipX"
+        href="#"
+        class="btn-normal"
+        role="button"
+        @click.prevent="flipX"
+      >
+        <fa :icon="['fas', 'arrows-alt-h']" />
+      </a>
+      <a
+        ref="flipY"
+        href="#"
+        class="btn-normal"
+        role="button"
+        @click.prevent="flipY"
+      >
+        <fa :icon="['fas', 'arrows-alt-v']" />
       </a>
       <a
         href="#"
@@ -112,24 +131,6 @@
         @click.prevent="rotate(-45)"
       >
         ↺ 45°
-      </a>
-      <a
-        ref="flipX"
-        href="#"
-        class="btn-normal"
-        role="button"
-        @click.prevent="flipX"
-      >
-        Flip X
-      </a>
-      <a
-        ref="flipY"
-        href="#"
-        class="btn-normal"
-        role="button"
-        @click.prevent="flipY"
-      >
-        Flip Y
       </a>
       <a
         href="#"
