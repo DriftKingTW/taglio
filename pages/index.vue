@@ -19,19 +19,19 @@
         name="image"
         accept="image/*"
         @change="setImage"
-      />
+      >
       <input
+        v-model="imgWidth"
         class="input-size"
         name="imgWidth"
         type="text"
-        v-model="imgWidth"
-      />
+      >
       <input
+        v-model="imgHeight"
         class="input-size"
         name="imgHeight"
         type="text"
-        v-model="imgHeight"
-      />
+      >
       <a
         href="#"
         class="btn-normal rounded-l-md"
@@ -150,13 +150,13 @@
     <div class="cropper-area mt-3">
       <vue-cropper
         v-if="image"
+        ref="cropper"
         class="w-screen left-0 right-0 top-20 bottom-0 absolute"
         :src="image"
-        :aspectRatio="1200 / 630"
-        :viewMode="2"
-        :autoCropArea="1"
+        :aspect-ratio="1200 / 630"
+        :view-mode="2"
+        :auto-crop-area="1"
         :background="false"
-        ref="cropper"
         preview=".preview"
       />
       <div
@@ -174,8 +174,95 @@
 
 <script lang="ts">
 import Vue from 'vue'
+const defaultImage = ''
+const WIDTH = 1200
+const HEIGHT = 630
 
-export default Vue.extend({})
+export default Vue.extend({
+  data () {
+    return {
+      showOverlay: false,
+      imgWidth: WIDTH,
+      imgHeight: HEIGHT,
+      image: defaultImage,
+      cropImg: '',
+      data: null
+    }
+  },
+  methods: {
+    cropImage () {
+      // get image data for post processing, e.g. upload or setting image src
+      this.cropImg = this.$refs.cropper
+        .getCroppedCanvas({ width: this.imgWidth, height: this.imgHeight })
+        .toDataURL()
+      this.$refs.cropper.replace(this.cropImg)
+    },
+    flipX () {
+      const dom = this.$refs.flipX
+      let scale = dom.getAttribute('data-scale')
+      scale = scale ? -scale : -1
+      this.$refs.cropper.scaleX(scale)
+      dom.setAttribute('data-scale', scale)
+    },
+    flipY () {
+      const dom = this.$refs.flipY
+      let scale = dom.getAttribute('data-scale')
+      scale = scale ? -scale : -1
+      this.$refs.cropper.scaleY(scale)
+      dom.setAttribute('data-scale', scale)
+    },
+    reset () {
+      this.$refs.cropper.replace(this.image)
+      this.$refs.cropper.reset()
+    },
+    rotate (deg) {
+      this.$refs.cropper.rotate(deg)
+    },
+    setImage (e) {
+      const file = e.target.files[0]
+      if (!file.type.includes('image/')) {
+        alert('Please select an image file')
+        return
+      }
+      if (typeof FileReader === 'function') {
+        const reader = new FileReader()
+        reader.onload = (event) => {
+          this.image = event.target.result
+          // rebuild cropperjs with the updated source
+          this.$refs.cropper.replace(event.target.result)
+        }
+        reader.readAsDataURL(file)
+      } else {
+        alert('Sorry, FileReader API not supported')
+      }
+    },
+    showFileChooser () {
+      this.$refs.imgInput.click()
+    },
+    zoom (percent) {
+      this.$refs.cropper.relativeZoom(percent)
+    },
+    dragover (event) {
+      event.preventDefault()
+      this.showOverlay = true
+    },
+    dragleave () {
+      this.showOverlay = false
+    },
+    drop (event) {
+      event.preventDefault()
+      if (this.image) {
+        URL.revokeObjectURL(this.image)
+        this.image = URL.createObjectURL(event.dataTransfer.files[0])
+        this.$refs.cropper.replace(this.image)
+      } else {
+        this.image = URL.createObjectURL(event.dataTransfer.files[0])
+      }
+      event.dataTransfer.clearData()
+      this.showOverlay = false
+    }
+  }
+})
 </script>
 
 <style>
