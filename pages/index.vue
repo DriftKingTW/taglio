@@ -189,6 +189,11 @@ export default Vue.extend({
       data: null
     }
   },
+  head: {
+    bodyAttrs: {
+      class: 'dark:bg-gray-900'
+    }
+  },
   methods: {
     cropImage () {
       // get image data for post processing, e.g. upload or setting image src
@@ -265,10 +270,98 @@ export default Vue.extend({
 })
 </script>
 
-<style>
-/* Sample `apply` at-rules with Tailwind CSS
-.container {
-@apply min-h-screen flex justify-center items-center text-center mx-auto;
+<style scoped>
+
+.drag-overlay {
+  @apply fixed
+  top-0
+  left-0
+  right-0
+  bottom-0
+  h-screen
+  w-full
+  z-50
+  overflow-hidden
+  bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500
+  flex
+  flex-col
+  items-center
+  justify-center
+  opacity-75
+  animate-pulse;
 }
-*/
+
+.input-size {
+  @apply appearance-none
+  rounded-lg
+  h-10
+  bg-gray-100
+  border-none
+  text-gray-700
+  mr-3
+  px-2
+  object-center
+  leading-tight
+  focus:outline-none
+  dark:bg-gray-800
+  dark:text-gray-300;
+}
+
+.image-tag {
+  @apply absolute
+  text-lg
+  -mt-10
+  text-white
+  px-4
+  pr-6
+  bg-gradient-to-r
+  from-gray-700
+  to-transparent
+  bg-opacity-75;
+}
+
+.btn-normal {
+  @apply font-medium
+  cursor-pointer
+  mx-0
+  my-2
+  py-2
+  px-3
+  bg-white
+  text-blue-400
+  border-solid
+  border-0
+  border-gray-400
+  hover:bg-blue-400
+  hover:text-white
+  transition
+  duration-200
+  shadow
+  dark:bg-gray-700
+  dark:text-gray-300
+  dark:hover:bg-blue-600;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.preview {
+  width: 100%;
+  /* height: calc(372px * (630 / 1200)); */
+  /* overflow: hidden; */
+  aspect-ratio: 16/9;
+  background: #ccc;
+}
+
+.crop-placeholder {
+  /* width: 100%; */
+  /* height: calc(372px * (630 / 1200)); */
+  /* aspect-ratio: 16/9; */
+  /* background: #ccc; */
+}
+
+.cropped-image img {
+  max-width: 100%;
+}
 </style>
