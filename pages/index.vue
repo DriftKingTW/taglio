@@ -13,6 +13,22 @@
     </div>
 
     <div v-show="image" class="actions min-w-full flex justify-center items-center h-20">
+      <v-dropdown class="mr-3">
+        <!-- placement="center" -->
+        <!-- Button content -->
+        <template #button>
+          <span class="px-2 py-2 inline-flex items-center justify-items-end text-sm rounded-lg">
+            <span class="mr-2">{{ currentTemplate }}</span>
+          </span>
+        </template>
+
+        <!-- Opened dropdown content -->
+        <template #content>
+          <span v-for="(template, index) in templateList" :key="index">
+            <a class="flex w-full justify-between items-center rounded-lg px-2 py-1 my-1 hover:bg-blue-600 hover:text-gray-300" href="#" @click="setCropSize(template.name, template.width, template.height)">{{ template.name }}</a>
+          </span>
+        </template>
+      </v-dropdown>
       <input
         ref="imgInput"
         type="file"
@@ -78,77 +94,8 @@
         <fa :icon="['fas', 'download']" />
       </a>
     </div>
-    <div
-      v-show="image"
-      class="actions min-w-full flex justify-center items-center absolute bottom-10 z-50 opacity-75 hover:opacity-100 transition ease-in"
-    >
-      <a
-        href="#"
-        class="btn-normal rounded-l-md"
-        role="button"
-        @click.prevent="zoom(0.2)"
-      >
-        <fa :icon="['fas', 'search-plus']" />
-      </a>
-      <a
-        href="#"
-        class="btn-normal"
-        role="button"
-        @click.prevent="zoom(-0.2)"
-      >
-        <fa :icon="['fas', 'search-minus']" />
-      </a>
-      <a
-        ref="flipX"
-        href="#"
-        class="btn-normal"
-        role="button"
-        @click.prevent="flipX"
-      >
-        <fa :icon="['fas', 'arrows-alt-h']" />
-      </a>
-      <a
-        ref="flipY"
-        href="#"
-        class="btn-normal"
-        role="button"
-        @click.prevent="flipY"
-      >
-        <fa :icon="['fas', 'arrows-alt-v']" />
-      </a>
-      <a
-        href="#"
-        class="btn-normal"
-        role="button"
-        @click.prevent="rotate(45)"
-      >
-        ↻ 45°
-      </a>
-      <a
-        href="#"
-        class="btn-normal"
-        role="button"
-        @click.prevent="rotate(-45)"
-      >
-        ↺ 45°
-      </a>
-      <a
-        href="#"
-        class="btn-normal"
-        role="button"
-        @click.prevent="rotate(90)"
-      >
-        ↻ 90°
-      </a>
-      <a
-        href="#"
-        class="btn-normal rounded-r-md"
-        role="button"
-        @click.prevent="rotate(-90)"
-      >
-        ↺ 90°
-      </a>
-    </div>
+
+    <float-editor v-show="image" ref="floatEditor" @zoom="zoom" @flipX="flipX" @flipY="flipY" @rotate="rotate" />
 
     <div class="cropper-area mt-3">
       <vue-cropper
@@ -177,6 +124,8 @@
 
 <script>
 import Vue from 'vue'
+import Vdropdown from '@/components/v-dropdown'
+import FloatEditor from '@/components/float-editor'
 
 const defaultImage = ''
 const WIDTH = 1200
@@ -185,6 +134,13 @@ const HEIGHT = 630
 export default Vue.extend({
   data () {
     return {
+      templateList: [
+        { name: 'Fanbox', width: '1200', height: '630' },
+        { name: 'Pixiv', width: '500', height: '100' },
+        { name: 'Facebook', width: '200', height: '630' },
+        { name: 'Plurk', width: '600', height: '400' }
+      ],
+      currentTemplate: 'Default',
       showOverlay: false,
       aspectRatio: 16 / 9,
       imgWidth: WIDTH,
@@ -195,6 +151,10 @@ export default Vue.extend({
       data: null
     }
   },
+  component: {
+    Vdropdown,
+    FloatEditor
+  },
   methods: {
     cropImage () {
       // get image data for post processing, e.g. upload or setting image src
@@ -204,14 +164,14 @@ export default Vue.extend({
       this.$refs.cropper.replace(this.cropImg)
     },
     flipX () {
-      const dom = this.$refs.flipX
+      const dom = this.$refs.floatEditor.$refs.flipX
       let scale = dom.getAttribute('data-scale')
       scale = scale ? -scale : -1
       this.$refs.cropper.scaleX(scale)
       dom.setAttribute('data-scale', scale)
     },
     flipY () {
-      const dom = this.$refs.flipY
+      const dom = this.$refs.floatEditor.$refs.flipY
       let scale = dom.getAttribute('data-scale')
       scale = scale ? -scale : -1
       this.$refs.cropper.scaleY(scale)
@@ -251,7 +211,12 @@ export default Vue.extend({
         this.cropLock = true
       }
     },
-    setCropSize () {
+    setCropSize (tpName, w, h) {
+      if (tpName && w && h) {
+        this.currentTemplate = tpName
+        this.imgWidth = w
+        this.imgHeight = h
+      }
       this.$refs.cropper.setAspectRatio(this.imgWidth / this.imgHeight)
       this.cropLock = true
     },
@@ -284,7 +249,7 @@ export default Vue.extend({
 })
 </script>
 
-<style scoped>
+<style>
 
 .drag-overlay {
   @apply fixed
