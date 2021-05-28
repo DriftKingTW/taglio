@@ -12,7 +12,7 @@
       </div>
     </div>
 
-    <div class="actions min-w-full flex justify-center items-center h-20">
+    <div v-show="image" class="actions min-w-full flex justify-center items-center h-20">
       <input
         ref="imgInput"
         type="file"
@@ -22,26 +22,28 @@
       >
       <input
         v-model="imgWidth"
-        class="input-size"
+        class="input-size rounded-l-lg"
         name="imgWidth"
         type="text"
-        @change="setCropSize"
-      >
-      <input
-        v-model="imgHeight"
-        class="input-size"
-        name="imgHeight"
-        type="text"
+        size="5"
         @change="setCropSize"
       >
       <a
         href="#"
-        class="btn-normal rounded-l-md"
+        class="btn-normal"
         role="button"
         @click.prevent="setCropLock"
       >
-        Free
+        🔒
       </a>
+      <input
+        v-model="imgHeight"
+        class="input-size rounded-r-lg mr-3"
+        name="imgHeight"
+        type="text"
+        size="5"
+        @change="setCropSize"
+      >
       <a
         href="#"
         class="btn-normal rounded-l-md"
@@ -51,7 +53,6 @@
         Upload
       </a>
       <a
-        v-show="image"
         href="#"
         class="btn-normal"
         role="button"
@@ -60,7 +61,6 @@
         Reset
       </a>
       <a
-        v-show="image"
         href="#"
         class="btn-normal"
         role="button"
@@ -69,7 +69,6 @@
         Crop
       </a>
       <a
-        v-show="image"
         class="btn-normal rounded-r-md"
         role="button"
         :href="cropImg"
@@ -79,10 +78,10 @@
       </a>
     </div>
     <div
+      v-show="image"
       class="actions min-w-full flex justify-center items-center absolute bottom-10 z-50 opacity-75 hover:opacity-100 transition ease-in"
     >
       <a
-        v-show="image"
         href="#"
         class="btn-normal rounded-l-md"
         role="button"
@@ -91,7 +90,6 @@
         +
       </a>
       <a
-        v-show="image"
         href="#"
         class="btn-normal"
         role="button"
@@ -100,7 +98,6 @@
         -
       </a>
       <a
-        v-show="image"
         href="#"
         class="btn-normal"
         role="button"
@@ -109,7 +106,6 @@
         ↻ 45°
       </a>
       <a
-        v-show="image"
         href="#"
         class="btn-normal"
         role="button"
@@ -118,7 +114,6 @@
         ↺ 45°
       </a>
       <a
-        v-show="image"
         ref="flipX"
         href="#"
         class="btn-normal"
@@ -128,7 +123,6 @@
         Flip X
       </a>
       <a
-        v-show="image"
         ref="flipY"
         href="#"
         class="btn-normal"
@@ -138,7 +132,6 @@
         Flip Y
       </a>
       <a
-        v-show="image"
         href="#"
         class="btn-normal"
         role="button"
@@ -147,7 +140,6 @@
         ↻ 90°
       </a>
       <a
-        v-show="image"
         href="#"
         class="btn-normal rounded-r-md"
         role="button"
@@ -314,12 +306,11 @@ export default Vue.extend({
 
 .input-size {
   @apply appearance-none
-  rounded-lg
   h-10
+  text-center
   bg-gray-100
   border-none
   text-gray-700
-  mr-3
   px-2
   object-center
   leading-tight
