@@ -1,6 +1,6 @@
 <template>
   <div
-    class="actions min-w-full flex justify-center items-center absolute bottom-10 z-50 opacity-75 hover:opacity-100 transition ease-in"
+    class="actions min-w-full flex justify-center items-center absolute bottom-10 z-10 opacity-75 hover:opacity-100 transition ease-in"
   >
     <a
       href="#"
