@@ -46,7 +46,7 @@
     </a>
     <a
       href="#"
-      class="btn-normal"
+      class="btn-normal rounded-r-md sm:rounded-none"
       role="button"
       @click.prevent="$emit('rotate',-45)"
     >
@@ -54,7 +54,7 @@
     </a>
     <a
       href="#"
-      class="btn-normal"
+      class="btn-normal hidden sm:block"
       role="button"
       @click.prevent="$emit('rotate',90)"
     >
@@ -62,7 +62,7 @@
     </a>
     <a
       href="#"
-      class="btn-normal rounded-r-md"
+      class="btn-normal rounded-r-md hidden sm:block"
       role="button"
       @click.prevent="$emit('rotate',-90)"
     >
