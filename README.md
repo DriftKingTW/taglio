@@ -1,8 +1,10 @@
 # Taglio
 
-Taglio is an banner/cover/preview image cropper design for creator. 
+Taglio is an banner/cover/preview image cropper design for creator.
 
 It's easy to use and includes some commonly used template (like pixiv, twitter, etc)
+
+Based on [Nxut.js](https://nuxtjs.org/) and [vue-cropperjs](https://github.com/Agontuk/vue-cropperjs).
 
 Web App: [taglio.driftking.tw](https://taglio.driftking.tw)
 
