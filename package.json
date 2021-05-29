@@ -9,7 +9,6 @@
     "generate": "nuxt generate",
     "lint": "eslint --ext .ts,.js,.vue .",
     "test": "jest",
-    "dev": "nuxt",
     "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "dependencies": {
