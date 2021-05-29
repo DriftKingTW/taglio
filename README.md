@@ -8,10 +8,10 @@ Web App: [taglio.driftking.tw](https://taglio.driftking.tw)
 
 # TODO
 
-[ ] Electron desktop application
-[ ] Firebase authentication
-[ ] User can save custom template
-[ ] PWA support
+- [ ] Electron desktop application
+- [ ] Firebase authentication
+- [ ] User can save custom template
+- [ ] PWA support
 
 ## Build Setup
 
