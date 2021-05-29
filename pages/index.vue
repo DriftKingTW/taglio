@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-screen mx-auto left-0 right-0 top-0 bottom-0 absolute dark:bg-gray-900 just"
+    class="w-screen h-screen mx-auto dark:bg-gray-900 absolute top-0 right-0 left-0 bottom-0"
     @dragover="dragover"
     @drop="drop"
   >
@@ -12,7 +12,7 @@
       </div>
     </div>
 
-    <div v-show="image" class="actions min-w-full flex flex-col sm:flex-row sm:h-20 justify-center items-center">
+    <div v-show="image" class="actions min-w-full flex flex-col sm:flex-row h-28 sm:h-20 justify-center items-center">
       <div class="flex flex-row items-center">
         <v-dropdown class="mr-3 mt-2 sm:mt-0">
           <!-- placement="center" -->
@@ -116,14 +116,14 @@
       @rotate="rotate"
     />
 
-    <div class="cropper-area mt-0 sm:mt-3">
+    <div class="cropper-area absoulte bottom-0 right-0 left-0 top-28 sm:top-20">
       <vue-cropper
         v-if="image"
         ref="cropper"
-        class="w-screen left-0 right-0 top-25 sm:top-20 sm:bottom-0 absolute"
+        class="left-0 right-0 top-28 sm:top-20 bottom-0 absolute"
         :src="image"
         :aspect-ratio="aspectRatio"
-        :view-mode="2"
+        :view-mode="0"
         :auto-crop-area="1"
         :background="false"
         preview=".preview"
