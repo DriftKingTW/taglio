@@ -164,7 +164,7 @@ export default Vue.extend({
       ],
       currentTemplate: 'Default',
       showOverlay: false,
-      aspectRatio: 16 / 9,
+      aspectRatio: WIDTH / HEIGHT,
       imgWidth: WIDTH,
       imgHeight: HEIGHT,
       image: defaultImage,
