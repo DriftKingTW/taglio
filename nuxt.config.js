@@ -80,6 +80,6 @@ export default {
 
   // For deploy on Github pages
   router: {
-    base: '/',
+    base: '/taglio/',
   },
 }
