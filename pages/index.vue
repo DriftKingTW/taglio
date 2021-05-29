@@ -96,11 +96,13 @@
           <fa :icon="['fas', 'crop']" />
         </a>
         <a
+          ref="download"
           v-tooltip="'Download'"
           class="btn-normal rounded-r-md"
           role="button"
           :href="cropImg"
-          download
+          :download="fileName"
+          @click.prevent="downloadImage"
         >
           <fa :icon="['fas', 'download']" />
         </a>
@@ -166,6 +168,7 @@ export default Vue.extend({
       imgWidth: WIDTH,
       imgHeight: HEIGHT,
       image: defaultImage,
+      fileName: '',
       cropImg: '',
       cropLock: true,
       data: null
@@ -182,6 +185,15 @@ export default Vue.extend({
         .getCroppedCanvas({ width: this.imgWidth, height: this.imgHeight })
         .toDataURL()
       this.$refs.cropper.replace(this.cropImg)
+    },
+    downloadImage () {
+      this.cropImage()
+      const link = document.createElement('a')
+      link.href = this.cropImg
+      link.download = this.fileName
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
     },
     flipX () {
       const dom = this.$refs.floatEditor.$refs.flipX
@@ -206,6 +218,7 @@ export default Vue.extend({
     },
     setImage (e) {
       const file = e.target.files[0]
+      this.fileName = file.name.replace(/\.[^/.]+$/, '')
       if (!file.type.includes('image/')) {
         alert('Please select an image file')
         return
@@ -255,13 +268,15 @@ export default Vue.extend({
     },
     drop (event) {
       event.preventDefault()
+      const file = event.dataTransfer.files[0]
       if (this.image) {
         URL.revokeObjectURL(this.image)
-        this.image = URL.createObjectURL(event.dataTransfer.files[0])
+        this.image = URL.createObjectURL(file)
         this.$refs.cropper.replace(this.image)
       } else {
-        this.image = URL.createObjectURL(event.dataTransfer.files[0])
+        this.image = URL.createObjectURL(file)
       }
+      this.fileName = file.name.replace(/\.[^/.]+$/, '')
       event.dataTransfer.clearData()
       this.showOverlay = false
     }
