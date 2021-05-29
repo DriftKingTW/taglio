@@ -123,7 +123,7 @@
         class="left-0 right-0 top-28 sm:top-20 bottom-0 absolute"
         :src="image"
         :aspect-ratio="aspectRatio"
-        :view-mode="0"
+        :view-mode="2"
         :auto-crop-area="1"
         :background="false"
         preview=".preview"
