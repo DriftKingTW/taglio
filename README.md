@@ -1,4 +1,17 @@
-# taglio
+# Taglio
+
+Taglio is an banner/cover/preview image cropper design for creator. 
+
+It's easy to use and includes some commonly used template (like pixiv, twitter, etc)
+
+Web App: [taglio.driftking.tw](https://taglio.driftking.tw)
+
+# TODO
+
+[ ] Electron desktop application
+[ ] Firebase authentication
+[ ] User can save custom template
+[ ] PWA support
 
 ## Build Setup
 
