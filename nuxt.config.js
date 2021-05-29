@@ -78,6 +78,7 @@ export default {
     transpile: ['vue-tooltip', 'vue-cropper'],
   },
 
+  // For deploy on Github pages
   router: {
     base: '/taglio/',
   },
