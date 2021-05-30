@@ -41,9 +41,27 @@
       <fa :icon="['fas', 'arrows-alt-v']" />
     </a>
     <a
-      v-tooltip="'Rotate 45°'"
+      v-tooltip="'Rotate 5°'"
       href="#"
       class="btn-normal"
+      role="button"
+      @click.prevent="$emit('rotate', 5)"
+    >
+      ↻ 5°
+    </a>
+    <a
+      v-tooltip="'Rotate -5°'"
+      href="#"
+      class="btn-normal rounded-r-md sm:rounded-none"
+      role="button"
+      @click.prevent="$emit('rotate', -5)"
+    >
+      ↺ 5°
+    </a>
+    <a
+      v-tooltip="'Rotate 45°'"
+      href="#"
+      class="btn-normal hidden sm:block"
       role="button"
       @click.prevent="$emit('rotate', 45)"
     >
@@ -52,29 +70,11 @@
     <a
       v-tooltip="'Rotate -45°'"
       href="#"
-      class="btn-normal rounded-r-md sm:rounded-none"
+      class="btn-normal rounded-r-md hidden sm:block"
       role="button"
       @click.prevent="$emit('rotate', -45)"
     >
       ↺ 45°
-    </a>
-    <a
-      v-tooltip="'Rotate 90°'"
-      href="#"
-      class="btn-normal hidden sm:block"
-      role="button"
-      @click.prevent="$emit('rotate', 90)"
-    >
-      ↻ 90°
-    </a>
-    <a
-      v-tooltip="'Rotate -90°'"
-      href="#"
-      class="btn-normal rounded-r-md hidden sm:block"
-      role="button"
-      @click.prevent="$emit('rotate', -90)"
-    >
-      ↺ 90°
     </a>
   </div>
 </template>
