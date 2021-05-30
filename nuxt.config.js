@@ -71,9 +71,11 @@ export default {
     manifest: {
       name: 'Taglio - An Easy to Use Banner/Cover Generator',
       short_name: 'Taglio',
-      description:
-        'Taglio is an banner/cover/preview image editor.',
+      description: 'Taglio is an banner/cover/preview image editor.',
       lang: 'en',
+    },
+    icon: {
+      srouce: '/taglio/icon.png',
     },
   },
 
