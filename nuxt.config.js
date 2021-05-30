@@ -19,7 +19,7 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
     ],
-    // link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -74,11 +74,7 @@ export default {
       description:
         'Taglio is an banner/cover/preview image editor.',
       lang: 'en',
-    },
-<<<<<<< HEAD
-    icon: false
-=======
->>>>>>> parent of f5c3fb7... Update favicon path
+    }
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
