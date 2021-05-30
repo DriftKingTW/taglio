@@ -71,10 +71,14 @@ export default {
     manifest: {
       name: 'Taglio - An Easy to Use Banner/Cover Generator',
       short_name: 'Taglio',
-      description: 'Taglio is an banner/cover/preview image editor.',
+      description:
+        'Taglio is an banner/cover/preview image editor.',
       lang: 'en',
     },
+<<<<<<< HEAD
     icon: false
+=======
+>>>>>>> parent of f5c3fb7... Update favicon path
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
