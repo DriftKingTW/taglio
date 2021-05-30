@@ -6,7 +6,7 @@ It's easy to use and includes some commonly used template (like pixiv, twitter, 
 
 Based on [Nxut.js](https://nuxtjs.org/) and [vue-cropperjs](https://github.com/Agontuk/vue-cropperjs).
 
-Web App: [taglio.driftking.tw](https://taglio.driftking.tw)
+Web App: [blog.driftking.tw/taglio](https://blog.driftking.tw/taglio)
 
 # TODO
 
