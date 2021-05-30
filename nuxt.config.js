@@ -75,7 +75,7 @@ export default {
       lang: 'en',
     },
     icon: {
-      srouce: '/taglio/icon.png',
+      srouce: '~/static/icon.png',
     },
   },
 
