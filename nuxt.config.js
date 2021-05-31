@@ -69,8 +69,7 @@ export default {
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      name: 'Taglio - An Easy to Use Banner/Cover Generator',
-      short_name: 'Taglio',
+      name: 'Taglio',
       description:
         'Taglio is an banner/cover/preview image editor.',
       lang: 'en',
