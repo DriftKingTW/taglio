@@ -13,7 +13,7 @@ Web App: [blog.driftking.tw/taglio](https://blog.driftking.tw/taglio)
 - [ ] Electron desktop application
 - [ ] Firebase authentication
 - [ ] User can save custom template
-- [ ] PWA support
+- [x] PWA support
 
 ## Build Setup
 
